@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <div class="container mt-5 p-2">
+        <div class="card shadow p-4">
+            <h2 class="text-center">Place Your Bid</h2>
+            <hr>
+
+            <!-- Listing Details -->
+            <div class="listing-details text-center mb-4">
+                <h3></h3>
+                <img src="{{ auction.image.url }}" class="img-fluid rounded" alt="" style="max-width: 500px;">
+                <p class="mt-2"><strong>Starting Price:</strong> ${{ auction.starting_bid }}</p>
+                
+                <p class="mt-2"><strong>Current Price:</strong> ${{ highest_bid.amount }}</p>
+
+                <p><strong>Seller:</strong>{{ auction.owner }}</p>
+            </div>
+
+            <!-- Bid Form -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_amount" class="form-label">Enter your bid ($)</label>
+                    <input type="number" name="amount" id="id_amount" class="form-control"
+                           placeholder="Enter bid amount" min="{{ highest_bid.amount }}" required>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Submit Bid</button>
+                <!-- Go Back -->
+                <div class="text-center mt-3">
+                    <a href="{% url 'auction_detail' auction.id %}" class="btn btn-secondary">Back to Auction</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

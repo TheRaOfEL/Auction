@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Header Section -->
+    <div class="container-fluid bg-danger py-5 text-white" style="padding-top: 60px;">
+        <!-- Added padding-top to prevent overlap with fixed navbar -->
+        <div class="row">
+            <div class="col-12 col-lg-10">
+                <h1 class="display-5 fw-bold ms-0 ps-0 ms-md-5 ps-md-5 pt-3">My Auctions</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+
+        {% if auctions %}
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                {% for auction in auctions %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <img src="{{ auction.image.url }}" class="card-img-top" alt="{{ auction.name }}"
+                                 style="object-fit: cover; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ auction.name }}</h5>
+                                <p class="card-text">{{ auction.description|truncatechars:100 }}</p>
+                                <p class="text-muted mb-1">Starting Bid: ₦{{ auction.starting_bid }}</p>
+                                <p class="text-muted small">
+                                    {% if auction.is_active %}
+                                        <span class="badge bg-success">Active</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    {% endif %}
+                                </p>
+                                <a href="{% url 'auction_detail' auction.id %}" class="btn btn-primary btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+
+            <div class="alert alert-info">
+                You haven't created any auctions yet.
+                <a href="{% url 'create_auction' %}">Create a new Auction </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

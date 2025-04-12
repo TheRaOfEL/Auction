@@ -1,0 +1,19 @@
+ENV/
+*.pyc
+*.pyo
+*.db
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+
+# Secret files (like API keys)
+.env
+
+# PyCharm project files
+.idea/
+
+# Log files
+*.log

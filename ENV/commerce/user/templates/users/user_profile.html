@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 40px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #ddd;
+        }
+
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .bio {
+            color: #555;
+            font-size: 16px;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #333;
+        }
+    </style>
+
+
+    <div class="profile-container">
+        <a href="{% url 'edit_profile' %}">
+            <h2>Edit Profile</h2>
+        </a>
+        {% if profiles.profile_picture %}
+            <img class="profile-img" src="{{ profiles.profile_picture.url }}"
+                 alt="{{ profiles.username }}'s profile picture">
+        {% else %}
+            <img class="profile-img" src="{% static 'images/client-circle4.png' %}"
+                 alt="Default profile picture">
+        {% endif %}
+
+        <h2>{{ profiles.username }}</h2>
+
+        {% if profiles.bio %}
+            <p class="bio">{{ profiles.bio }}</p>
+        {% else %}
+            <p class="bio">No bio provided.</p>
+        {% endif %}
+
+        <div class="info">
+            <p><strong>Email:</strong> {{ profiles.email }}</p>
+            <p><strong>Location:</strong> {{ profiles.location }}</p>
+            <p><strong>Joined:</strong> {{ profiles.created_at|date:"F j, Y" }}</p>
+        </div>
+    </div>
+
+
+{% endblock content %}
+

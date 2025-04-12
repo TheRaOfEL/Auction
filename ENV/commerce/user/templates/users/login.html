@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+
+{% block content %}
+       <!-- Header Section -->
+    <div class="container-fluid bg-danger py-5 text-white" style="padding-top: 60px;">
+        <!-- Added padding-top to prevent overlap with fixed navbar -->
+        <div class="row">
+            <div class="col-12 col-lg-10">
+                <h1 class="display-5 fw-bold ms-0 ps-0 ms-md-5 ps-md-5 pt-3">Login</h1>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="row py-5 justify-content-center">
+                <div class="col-10 col-md-6 signup-form px-5 py-2">
+                    <div class="form-head text-center mb-5">
+                        <h3>Get Logged In</h3>
+                        <p>Don't have an account? <a class="fw-bold text-danger" href="{% url 'register' %}">Sign up Here!</a>
+                        </p>
+                    </div>
+                    <div class="form-body">
+                        <form action="" method="POST" class="form auth__form">
+                            {% csrf_token %}
+                            <!-- Input:Username -->
+                            <div class="form__field">
+                                <label for="formInput#text">Username: </label>
+                                <input
+                                        class="input input--text"
+                                        id="formInput#text"
+                                        type="text"
+                                        name="username"
+                                        placeholder="Enter your username..."
+                                />
+                            </div>
+                            <!-- Input:Password -->
+                            <div class="form__field">
+                                <label for="formInput#password">Password: </label>
+                                <input
+                                        class="input input--password"
+                                        id="formInput#passowrd"
+                                        type="password"
+                                        name="password"
+                                        placeholder="••••••••"
+                                />
+                            </div>
+                            <p>
+                            <div class="">
+                                <div class="auth__actions">
+                                    <input type="submit" class="w-100 btn btn-success mt-1" value="Login"></input>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
