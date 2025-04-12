@@ -1,4 +1,5 @@
 Sieg's Auction Site
+
 Welcome to Sieg's Auction Site, an online platform that allows users to create, view, and bid on auction listings. This project is designed to offer a seamless and user-friendly experience for auction enthusiasts.
 
 Features
