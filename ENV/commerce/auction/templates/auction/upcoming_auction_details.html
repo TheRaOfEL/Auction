@@ -28,14 +28,14 @@
                         <h5 class="mt-4">Time Left to Start:</h5>
                         <p class="card-text">
                         <p class="card-text">
-                            {% if time_left_days > 0 %}
+                            {% if time_left_minutes > 0 %}
                                 <strong id="countdown">{{ time_left_days }} days {{ time_left_hours }}
                                     hours {{ time_left_minutes }} minutes</strong>
                             {% else %}
                                 <strong>The auction is now live!</strong>
                             {% endif %}
                         </p>
-                        {% if time_left.days <= 0 %}
+                        {% if time_left_minutes <= 0 %}
                             <a href="{% url 'auction_detail' pk=auction.id %}" class="btn btn-primary">Go to
                                 Auction</a>
                         {% endif %}

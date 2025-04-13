@@ -32,6 +32,9 @@ class AuctionListing(models.Model):
     def is_auction_completed(self):
         return self.completed or (timezone.now() > self.end_at)
 
+    def is_upcoming(self):
+        return self.start_at and self.start_at > timezone.now()
+
     def __str__(self):
         return self.name
 

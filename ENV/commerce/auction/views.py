@@ -158,7 +158,10 @@ def create_auction(request):
             auction = form.save(commit=False)
             auction.owner = request.user.profile  # assign the owner
             auction.save()
-            return redirect("auction_detail", auction.pk)  # Redirect to the auction details page
+            if auction is upcoming_auctions:
+                return redirect('upcoming_auctions_detail', pk=auction.id)
+            else:
+                return redirect("auction_detail", auction.pk)  # Redirect to the auction details page
     else:
         form = AuctionForm()
     return render(request, "auction/auction_form.html", {"form": form})
@@ -215,7 +218,7 @@ def place_bid(request, pk):
     return render(request, 'auction/create_bid.html', context)
 
 
-@login_required
+@login_required(login_url='login')
 def toggle_watchlist(request, auction_id):
     auction = get_object_or_404(AuctionListing, id=auction_id)
     if request.user.profile in auction.watchers.all():
@@ -227,7 +230,7 @@ def toggle_watchlist(request, auction_id):
     return redirect('auction_detail', pk=auction_id)
 
 
-@login_required
+@login_required(login_url='login')
 def my_watchlist(request):
     profile = Profile.objects.get(user=request.user)
     watchlist_items = AuctionListing.objects.filter(watchers=profile)

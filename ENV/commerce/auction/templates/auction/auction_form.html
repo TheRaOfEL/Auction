@@ -1,48 +1,61 @@
 {% extends 'main.html' %}
+{% load widget_tweaks %}
 {% block content %}
-    <div class="container mt-5">
-        <h2 class="mb-4">Create a New Auction</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-lg rounded-4 border-0">
+                <div class="card-body p-5">
+                    <h2 class="mb-4 text-center fw-bold">🎯 Create a New Auction</h2>
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
 
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
+                        <div class="form-floating mb-4">
+                            {{ form.name|add_class:"form-control" }}
+                            <label for="id_name">Auction Name</label>
+                        </div>
 
-            <div class="mb-3">
-                <label for="id_name" class="form-label">Name</label>
-                {{ form.name }}
+                        <div class="form-floating mb-4">
+                            {{ form.description|add_class:"form-control" }}
+                            <label for="id_description">Description</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            {{ form.starting_bid|add_class:"form-control" }}
+                            <label for="id_starting_bid">Starting Bid</label>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="id_image" class="form-label fw-semibold">Upload Image</label>
+                            {{ form.image|add_class:"form-control" }}
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            {{ form.category|add_class:"form-select" }}
+                            <label for="id_category">Category</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            {{ form.start_at|add_class:"form-control" }}
+                            <label for="id_start_at">Start Time</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            {{ form.end_at|add_class:"form-control" }}
+                            <label for="id_end_at">End Time</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-3">
+                                🚀 Create Auction
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-
-            <div class="mb-3">
-                <label for="id_description" class="form-label">Description</label>
-                {{ form.description }}
-            </div>
-
-            <div class="mb-3">
-                <label for="id_starting_bid" class="form-label">Starting Bid</label>
-                {{ form.starting_bid }}
-            </div>
-
-            <div class="mb-3">
-                <label for="id_image" class="form-label">Image</label>
-                {{ form.image }}
-            </div>
-
-            <div class="mb-3">
-                <label for="id_category" class="form-label">Category</label>
-                {{ form.category }}
-            </div>
-            
-            <div class="mb-3">
-                <label for="id_start_at" class="form-label">Start_at</label>
-                {{ form.start_at}}
-            </div>
-            
-            <div class="mb-3">
-                <label for="id_end_at" class="form-label">End_at</label>
-                {{ form.end_at }}
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Create Auction</button>
-        </form>
+        </div>
     </div>
+</div>
 {% endblock %}

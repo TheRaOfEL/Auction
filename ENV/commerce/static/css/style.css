@@ -105,26 +105,6 @@ a {
     color: #e74c3c; /* Red color for urgency */
 }
 
-/* Example for a moving gradient background */
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.bg-exciting-animated {
-    background: linear-gradient(135deg, rgba(255, 0, 0, 0.7), rgba(0, 0, 255, 0.7));
-    background-size: contain;
-    animation: gradientAnimation 15s ease infinite;
-    color: white;
-}
-
 .bg-gradient {
     background: linear-gradient(to bottom right, #ff7e5f, #feb47b); /* Customize gradient colors */
 }
@@ -161,4 +141,15 @@ a {
     color: white;
 }
 
+/* Light Mode Styles */
+.header-section {
+    background-color: #dc3545; /* Light background (Red) */
+    color: white; /* White text for light mode */
+}
 
+/* Dark Mode Styles */
+[data-theme="dark"] .header-section {
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light gray text for dark mode */
+}
+x
